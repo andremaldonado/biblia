@@ -26,37 +26,13 @@ import br.com.jcnaveia.biblia.dummy.DummyContent;
  */
 public class BooksFragment extends Fragment implements AbsListView.OnItemClickListener {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private OnFragmentInteractionListener mListener;
-
-    /**
-     * The fragment's ListView/GridView.
-     */
-    private AbsListView mListView;
 
     /**
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
      */
     private ListAdapter mAdapter;
-
-    // TODO: Rename and change types of parameters
-    public static BooksFragment newInstance(String param1, String param2) {
-        BooksFragment fragment = new BooksFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -65,28 +41,22 @@ public class BooksFragment extends Fragment implements AbsListView.OnItemClickLi
     public BooksFragment() {
     }
 
+    //TODO: comment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-        // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+        mAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, getBooks());
     }
 
+    //TODO: comment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_books2, container, false);
+        View view = inflater.inflate(R.layout.fragment_books, container, false);
 
         // Set the adapter
-        mListView = (AbsListView) view.findViewById(android.R.id.list);
-        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+        AbsListView mListView = (AbsListView) view.findViewById(android.R.id.list);
+        (mListView).setAdapter(mAdapter);
 
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
@@ -94,6 +64,7 @@ public class BooksFragment extends Fragment implements AbsListView.OnItemClickLi
         return view;
     }
 
+    //TODO: comment
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -105,48 +76,102 @@ public class BooksFragment extends Fragment implements AbsListView.OnItemClickLi
         }
     }
 
+    //TODO: comment
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
 
-
+    //TODO: comment
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            mListener.onFragmentInteraction(String.valueOf(position));
         }
     }
 
-    /**
-     * The default content for this Fragment has a TextView that is shown when
-     * the list is empty. If you would like to change the text, call this method
-     * to supply the text it should use.
-     */
-    public void setEmptyText(CharSequence emptyText) {
-        View emptyView = mListView.getEmptyView();
-
-        if (emptyView instanceof TextView) {
-            ((TextView) emptyView).setText(emptyText);
-        }
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+    //TODO: comment
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         public void onFragmentInteraction(String id);
+    }
+
+    //TODO: Move this method to a better place
+    /*
+     * Return the list of bible books
+     */
+    private String[] getBooks() {
+        return new String[]
+                {
+                        "Gênesis",
+                        "Êxodo",
+                        "Levítico",
+                        "Números",
+                        "Deuteronômio",
+                        "Josué",
+                        "Juízes",
+                        "Rute",
+                        "1 Samuel",
+                        "2 Samuel",
+                        "1 Reis",
+                        "2 Reis",
+                        "1 Crônicas",
+                        "2 Crônicas",
+                        "Esdras",
+                        "Neemias",
+                        "Ester",
+                        "Jó",
+                        "Salmos",
+                        "Provérbios",
+                        "Eclesiastes",
+                        "Cânticos",
+                        "Isaías",
+                        "Jeremias",
+                        "Lamentações",
+                        "Ezequiel",
+                        "Daniel",
+                        "Oséias",
+                        "Joel",
+                        "Amós",
+                        "Obadias",
+                        "Jonas",
+                        "Miquéias",
+                        "Naum",
+                        "Habacuque",
+                        "Sofonias",
+                        "Ageu",
+                        "Zacarias",
+                        "Malaquias",
+                        "Mateus",
+                        "Marcos",
+                        "Lucas",
+                        "João",
+                        "Atos",
+                        "Romanos",
+                        "1 Coríntios",
+                        "2 Coríntios",
+                        "Gálatas",
+                        "Efésios",
+                        "Filipenses",
+                        "Colossenses",
+                        "1 Tessalonicenses",
+                        "2 Tessalonicenses",
+                        "1 Timóteo",
+                        "2 Timóteo",
+                        "Tito",
+                        "Filemom",
+                        "Hebreus",
+                        "Tiago",
+                        "1 Pedro",
+                        "2 Pedro",
+                        "1 João",
+                        "2 João",
+                        "3 João",
+                        "Judas",
+                        "Apocalipse"
+                };
     }
 
 }

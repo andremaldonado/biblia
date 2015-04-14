@@ -17,16 +17,22 @@
 
 package br.com.jcnaveia.biblia;
 
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import static br.com.jcnaveia.biblia.BooksFragment.OnFragmentInteractionListener;
 
 /*
  * This activity displays the list of the Bible books
  */
-public class BooksActivity extends ActionBarActivity {
+public class BooksActivity extends ActionBarActivity
+    implements BooksFragment.OnFragmentInteractionListener{
 
+    //TODO: comment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +40,7 @@ public class BooksActivity extends ActionBarActivity {
         setTitle(R.string.app_name);
     }
 
+    //TODO: comment
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -41,6 +48,7 @@ public class BooksActivity extends ActionBarActivity {
         return true;
     }
 
+    //TODO: comment
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -54,5 +62,11 @@ public class BooksActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //TODO: comment
+    @Override
+    public void onFragmentInteraction(String id) {
+        Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
     }
 }
